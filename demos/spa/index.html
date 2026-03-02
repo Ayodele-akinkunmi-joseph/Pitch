@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zynaptic Spa | Websites That Relax & Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar.scrolled .logo {
+            color: #1a1a1a;
+        }
+
+        .logo span {
+            color: #9b59b6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #333;
+        }
+
+        .nav-links a:hover {
+            color: #9b59b6;
+        }
+
+        .nav-contact {
+            background: #9b59b6;
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #9b59b6;
+        }
+
+        .nav-contact:hover {
+            background: transparent;
+            color: #9b59b6 !important;
+        }
+
+        .parallax {
+            position: relative;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-1 {
+            background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbe4cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+
+        .parallax-2 {
+            background-image: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+
+        .parallax-3 {
+            background-image: url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 3rem 4rem;
+            max-width: 700px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 2rem;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #9b59b6;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #4a4a4a;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #9b59b6;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid #9b59b6;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: #9b59b6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.2);
+        }
+
+        .cta-button.whatsapp {
+            background-color: #25D366;
+            border-color: #25D366;
+        }
+
+        .cta-button.whatsapp:hover {
+            background-color: white;
+            color: #25D366;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #9b59b6;
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: #9b59b6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #9b59b6;
+            display: block;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            background-color: white;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            padding: 2rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .parallax {
+                background-attachment: scroll;
+            }
+            .content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ZYN<span>APTIC</span></a>
+            <div class="nav-links">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#results">Results</a>
+                <a href="#contact" class="nav-contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: PROBLEM -->
+    <div id="problem" class="parallax parallax-1">
+        <div class="content fade-in">
+            <h1>Your Spa Experience Starts Online</h1>
+            <p>Before clients relax on your table, they judge you by your website. A dated site means empty appointment slots.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">82%</span>
+                    <span class="stat-label">book spas online</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">73%</span>
+                    <span class="stat-label">choose based on photos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2x</span>
+                    <span class="stat-label">more bookings with good site</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: SOLUTION -->
+    <div id="solution" class="section">
+        <div class="section-container">
+            <h2 class="fade-in" style="font-size: 2.5rem; text-align: center; margin-bottom: 2rem;">I Build Spa Websites That Feel Like A Retreat<br><span style="color: #9b59b6;">(And Fill Your Appointment Book)</span></h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <h3>🕯️ Calming Design</h3>
+                    <p>Colors, fonts, and layouts that relax visitors before they even book.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h3>📸 Service Showcase</h3>
+                    <p>Beautiful galleries of your treatments, facilities, and results.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h3>📅 Online Booking</h3>
+                    <p>Clients book appointments 24/7 - no phone tag, no missed opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: SOCIAL PROOF -->
+    <div id="results" class="parallax parallax-2">
+        <div class="content fade-in">
+            <h2>From Quiet Days to Fully Booked</h2>
+            <p>"I used to have gaps in my schedule. Now clients book online while I'm actually working on someone."</p>
+            <p style="font-weight: 600; margin-bottom: 0;">— Serenity Day Spa, Miami</p>
+            <p style="color: #9b59b6; font-size: 1rem;">+175% online bookings</p>
+
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
+                <div>
+                    <span style="font-size: 2rem; font-weight: 700; color: #9b59b6;">65+</span>
+                    <p>Spa Clients</p>
+                </div>
+                <div>
+                    <span style="font-size: 2rem; font-weight: 700; color: #9b59b6;">15k+</span>
+                    <p>Monthly Visitors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: CONTACT -->
+    <div id="contact" class="parallax parallax-3">
+        <div class="content fade-in">
+            <h2>Ready to Fill Your Books?</h2>
+            <p>Let's build a website as relaxing as your spa - that actually brings in clients.</p>
+            
+            <div class="contact-options">
+                <a href="https://wa.me/2347084345640" class="contact-card" target="_blank">
+                    <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                    <h4>WhatsApp</h4>
+                    <p>07084345640</p>
+                </a>
+                <a href="mailto:zynaptic@gmail.com" class="contact-card">
+                    <i class="far fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>zynaptic@gmail.com</p>
+                </a>
+                <a href="tel:+2347062014710" class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Call</h4>
+                    <p>07062014710</p>
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <a href="https://wa.me/2347084345640" class="cta-button whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+                <a href="mailto:zynaptic@gmail.com" class="cta-button">
+                    <i class="far fa-envelope"></i> Email Me
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        function checkFade() {
+            document.querySelectorAll('.fade-in').forEach(fader => {
+                const rect = fader.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                    fader.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('load', checkFade);
+        window.addEventListener('scroll', checkFade);
+    </script>
+</body>
+
+</html>

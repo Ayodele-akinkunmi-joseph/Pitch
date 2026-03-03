@@ -15,6 +15,34 @@
     <link rel="stylesheet" href="assets/css/style.css">
     
     <style>
+        /* Fix select dropdown text color */
+select option {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* For the select element itself */
+select {
+    color: var(--text-primary) !important;
+    background-color: var(--bg-glass) !important;
+}
+
+/* When select is open/in dropdown */
+select:focus option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Fix the first/default option */
+select option:first-child {
+    color: var(--text-tertiary);
+}
+
+/* For light theme */
+body.light-theme select option {
+    background-color: white;
+    color: #0f172a;
+}
         /* Small fixes to work with your existing CSS */
         .work-grid {
             display: grid;
